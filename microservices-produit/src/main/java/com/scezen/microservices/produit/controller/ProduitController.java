@@ -36,7 +36,7 @@ public class ProduitController {
 		return ResponseEntity.created(uri).build();
 	}	
 	
-    @GetMapping("/produits/{id}")
+    @GetMapping("/{id}")
     public Produit getProduitById(@PathVariable Integer id) {
         return produitRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("ID Produit inexistant: " + id));
