@@ -1,4 +1,4 @@
-package com.scezen.microservices.modele;
+package com.scezen.microservices.assure.model;
 
 import java.util.Date;
 
@@ -11,6 +11,8 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.validator.constraints.Length;
+
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
 public abstract class Personne {
@@ -19,6 +21,7 @@ public abstract class Personne {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Integer id;
 	
+	@Length(min=3, max=30, message = "Le nombre de caractères du nom de la personne doit être compris entre 3 et 30.")
 	public String nom;
 	public String prenom;
 	public Long numeroPersonne;
@@ -27,7 +30,6 @@ public abstract class Personne {
 	public Date dateNaissance;
 	
 	public Personne(Integer id, String nom, String prenom, Long numeroPersonne, Date dateNaissance) {
-		super();
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;

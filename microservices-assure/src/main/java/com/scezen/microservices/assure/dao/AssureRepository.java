@@ -1,8 +1,8 @@
-package com.scezen.microservices.dao;
+package com.scezen.microservices.assure.dao;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.scezen.microservices.modele.*;
+import com.scezen.microservices.assure.model.*;
 
 public interface AssureRepository extends CrudRepository<Assure, Integer> {
 	

@@ -1,4 +1,4 @@
-package com.scezen.microservices.modele;
+package com.scezen.microservices.assure.model;
 
 import javax.persistence.Entity;
 
