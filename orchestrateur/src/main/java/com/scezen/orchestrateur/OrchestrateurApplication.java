@@ -1,13 +1,13 @@
-package com.scezen.microservices;
+package com.scezen.orchestrateur;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MicroservicesApplication {
+public class OrchestrateurApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MicroservicesApplication.class, args);
+		SpringApplication.run(OrchestrateurApplication.class, args);
 	}
 
 }
