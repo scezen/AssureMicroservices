@@ -23,7 +23,7 @@ import com.scezen.microservices.assure.model.Assure;
 @RestController
 @RequestMapping(path = "/previt")
 public class AssureController {
-	
+
 	@Autowired
 	private AssureRepository assureRepository;
 
@@ -48,17 +48,29 @@ public class AssureController {
 	public @ResponseBody Iterable<Assure> getAllAssures() {
 		return assureRepository.findAll();
 	}
-	
+
 	// Supprimer un Assuré par ID
-	@DeleteMapping (path="/Assure/{id}")     
-    public void supprimerAssurer(@PathVariable Integer id) {
-    	assureRepository.deleteById(id);        
-    }
-	
+	@DeleteMapping(path = "/Assure/{id}")
+	public void supprimerAssurer(@PathVariable Integer id) {
+		assureRepository.deleteById(id);
+	}
+
 	// Mettre à jour un Assuré
-	@PutMapping (path="/modifierAssure")    
-    public void modifierAssure(@RequestBody Assure assure) {
+	@PutMapping(path = "/modifierAssure")
+	public void modifierAssure(@RequestBody Assure assure) {
 		// Sauvegarder l'Assuré modifié
-      	assureRepository.save(assure);
-    }
+		assureRepository.save(assure);
+	}
+
+	// Trouver un Assuré par prénom et nom
+	@GetMapping(path = "/cherchePrenomNom/{prenom}/{nom}")
+	public ResponseEntity<Assure> findAssure(@PathVariable String prenom, @PathVariable String nom) {
+		Assure assureTrouve = assureRepository.findByPrenomAndNom(prenom, nom);
+
+		if (assureTrouve == null)
+			return ResponseEntity.notFound().build();
+
+		return ResponseEntity.ok(assureTrouve);
+	}
+
 }

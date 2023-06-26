@@ -7,5 +7,6 @@ import com.scezen.microservices.assure.model.*;
 public interface AssureRepository extends CrudRepository<Assure, Integer> {
 	
 	void deleteById(Assure id);
+	Assure findByPrenomAndNom(String prenom, String nom);
 
 }
