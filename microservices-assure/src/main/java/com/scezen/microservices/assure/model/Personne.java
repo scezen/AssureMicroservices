@@ -13,6 +13,8 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
 public abstract class Personne {
@@ -26,7 +28,7 @@ public abstract class Personne {
 	public String prenom;
 	public Long numeroPersonne;
 	
-	@Temporal(TemporalType.DATE)
+	@JsonFormat(pattern ="yyyy-MM-dd")
 	public Date dateNaissance;
 	
 	public Personne(Integer id, String nom, String prenom, Long numeroPersonne, Date dateNaissance) {

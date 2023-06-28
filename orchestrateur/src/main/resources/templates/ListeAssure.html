@@ -11,32 +11,29 @@
 		<h1>Liste après recherche</h1>
 	</div>
 
-	<div class="row">
-	
-		<table class="table">
-			<thead>
-				<tr>
-					<th th:text="Prenom"></th>
-					<th th:text="Nom"></th>
-					<th th:text="NumeroAssure"></th>
-				</tr>
-			</thead>
-			<tbody>
-				<!-- On récupère le nom de la clé passée dans le model pour boucler dessus -->
-				<tr th:each="assure : ${assures}" class="col-md-4 my-1">
-					<td th:text="${assure.prenom}"></td>
-					<td th:text="${assure.nom}"></td>
-					<td th:text="${assure.numeroAssure}"></td>
+<div class="row">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Prenom</th>
+				<th>Nom</th>
+				<th>NumeroAssure</th>
+			</tr>
+		</thead>
+		<tbody>
+			<!-- On récupère le nom de la clé passée dans le modèle pour boucler dessus -->
+			<tr th:each="assure : ${listeAssure}" class="col-md-4 my-1">
+				<td th:text="${assure.prenom}"></td>
+				<td th:text="${assure.nom}"></td>
+				<td>
+					<a th:href="@{|/Assure/numeroAssure/${assure.numeroAssure}|}"
+					   th:text="${assure.numeroAssure}"></a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
 
-					<!-- @ pour un lien. On entoure par des | pour utiliser une autre variable à l'intérieur -->
-					<td><a
-						th:href="@{|/Assure/numeroAssure/${assure.numeroAssure}|}"
-						th:text="${assure.numeroAssure}"> </a></td>
-
-				</tr>
-			</tbody>
-		</table>
-	</div>
 
 </body>
 </html>

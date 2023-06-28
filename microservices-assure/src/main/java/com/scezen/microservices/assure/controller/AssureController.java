@@ -1,6 +1,7 @@
 package com.scezen.microservices.assure.controller;
 
 import java.net.URI;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -63,14 +64,11 @@ public class AssureController {
 	}
 
 	// Trouver un Assuré par prénom et nom
-	@GetMapping(path = "/cherchePrenomNom/{prenom}/{nom}")
-	public ResponseEntity<Assure> findAssure(@PathVariable String prenom, @PathVariable String nom) {
-		Assure assureTrouve = assureRepository.findByPrenomAndNom(prenom, nom);
+	@GetMapping(path="/cherchePrenomNom/{prenom}/{nom}")
+	public List<Assure> rechercherAssureNomPrenom(@PathVariable String prenom, @PathVariable String nom) {
+		List<Assure> assuresList  = assureRepository.findByPrenomAndNom(prenom, nom);
+		return assuresList;
 
-		if (assureTrouve == null)
-			return ResponseEntity.notFound().build();
-
-		return ResponseEntity.ok(assureTrouve);
 	}
 
 }

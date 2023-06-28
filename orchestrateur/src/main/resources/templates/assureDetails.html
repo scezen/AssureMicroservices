@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Liste des produits</title>
+</head>
+<body>
+	<h1>Détails de l'assuré</h1>
+	<h2>
+		Numéro d'assuré: <span th:text="${numeroAssure}"></span>
+	</h2>
+
+	<h3>Liste des produits:</h3>
+	<table>
+		<thead>
+			<tr>
+				<th>Libellé</th>
+				<th>Numéro de produit</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="produit : ${produits}">
+				<td th:text="${produit.libelle}"></td>
+				<td><a
+					th:href="@{'/affecterNumeroProduit/' + ${numeroAssure} + '/' + ${produit.numeroProduit}}"
+					th:text="${produit.numeroProduit}"></a></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

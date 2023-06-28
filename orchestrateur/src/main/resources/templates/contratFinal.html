@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>ClairPrev - ListProduct</title>
+</head>
+<body>
+
+	<h1 class="text-center my-3">Finalisation de la création du
+		contrat</h1>
+
+	<div class="container">
+		<p class="my-3">
+			Numéro de l'assuré : <span th:text="${contrat.numeroAssure}">
+			</span>
+		</p>
+
+		<p class="my-3">
+			Numéro du contrat : <span th:text="${contrat.numeroContrat}">
+			</span>
+		</p>
+
+		<p class="my-3">
+			Numéro du produit : <span th:text="${contrat.numeroProduit}">
+			</span>
+		</p>
+
+		<p class="my-3">
+			Date de début : <span th:text="${contrat.dateDebut}"> </span>
+		</p>
+		
+	</div>
+</body>
+
+</html>

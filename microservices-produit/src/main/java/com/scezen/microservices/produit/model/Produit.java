@@ -16,11 +16,6 @@ public class Produit {
 	
 	public Long numeroProduit;
 
-	public Produit(Integer id, String libelle, Long numeroProduit) {
-		this.id = id;
-		this.libelle = libelle;
-		this.numeroProduit = numeroProduit;
-	}
 
 	public Produit() {
 		
