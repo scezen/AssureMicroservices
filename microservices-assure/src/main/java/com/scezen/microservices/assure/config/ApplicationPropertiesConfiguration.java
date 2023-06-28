@@ -1,10 +1,12 @@
 package com.scezen.microservices.assure.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Component;
 
 @Component
-@ConfigurationProperties("com.scezen.microservices")
+@ConfigurationProperties("scezen.microservices")
+@RefreshScope
 public class ApplicationPropertiesConfiguration {
 
 	private int limiteNombreAssure;
