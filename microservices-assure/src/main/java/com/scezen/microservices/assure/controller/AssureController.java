@@ -2,6 +2,8 @@ package com.scezen.microservices.assure.controller;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import javax.validation.Valid;
 
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.scezen.microservices.assure.config.ApplicationPropertiesConfiguration;
 import com.scezen.microservices.assure.dao.AssureRepository;
 import com.scezen.microservices.assure.model.Assure;
 
@@ -27,6 +30,9 @@ public class AssureController {
 
 	@Autowired
 	private AssureRepository assureRepository;
+	
+    @Autowired    
+    ApplicationPropertiesConfiguration appProperties;
 
 	// Créer un nouvel Assuré
 	@PostMapping(path = "/ajouterAssure")
@@ -45,10 +51,16 @@ public class AssureController {
 	}
 
 	// Obtenir tous les Assurés
-	@GetMapping(path = "/listerLesAssures")
-	public @ResponseBody Iterable<Assure> getAllAssures() {
-		return assureRepository.findAll();
-	}
+    @GetMapping(path="/listerLesAssures")
+    public List<Assure> getAllAssures() {
+
+        Iterable<Assure> assuresIterable = assureRepository.findAll();
+        List<Assure> assuresList = StreamSupport 
+                .stream(assuresIterable.spliterator(), false) 
+                .collect(Collectors.toList()); 
+        List<Assure> listeLimitee = assuresList.subList(0, appProperties.getLimiteNombreAssure());
+        return listeLimitee;
+    }
 
 	// Supprimer un Assuré par ID
 	@DeleteMapping(path = "/Assure/{id}")
